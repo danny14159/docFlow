@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.work.mapper.DocumentDao">
+  <insert id="insert" parameterType="com.work.bean.Document">
+   insert into t_document(id,state,author,content,title) values(#{id},#{state},#{author},#{content},#{title});
+  </insert>
+  <delete id="delete" parameterType="com.work.bean.Document">
+   update t_document set delete_state=1
+   <where>
+    id=#{id}
+         <if test="state!=null">and state=#{ state }</if>
+         <if test="author!=null">and author=#{ author }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="title!=null">and title=#{ title }</if>
+       </where>
+  </delete>
+  <update id="update" parameterType="com.work.bean.Document">
+   update t_document
+   <set>
+         <if test="id!=null">id=#{ id },</if>
+         <if test="state!=null">state=#{ state },</if>
+         <if test="author!=null">author=#{ author },</if>
+         <if test="content!=null">content=#{ content },</if>
+         <if test="title!=null">title=#{ title },</if>
+       </set>
+   <where>
+    id=#{id}
+         <if test="state!=null">and state=#{ state }</if>
+         <if test="author!=null">and author=#{ author }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="title!=null">and title=#{ title }</if>
+       </where>
+  </update>
+  <select id="list" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">
+   select id,state,author,content,title from t_document
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+         <if test="author!=null">and author=#{ author }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="title!=null">and title=#{ title }</if>
+       </where>
+  </select>
+  <select id="listByPage" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">
+   select id,state,author,content,title from t_document
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+         <if test="author!=null">and author=#{ author }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="title!=null">and title=#{ title }</if>
+       </where>
+   limit #{offset},#{rows}
+  </select>
+  <select id="load" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">
+   select id,state,author,content,title from t_document
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+         <if test="author!=null">and author=#{ author }</if>
+         <if test="content!=null">and content=#{ content }</if>
+         <if test="title!=null">and title=#{ title }</if>
+       </where>
+   limit 0,1
+  </select>
+  <select id="count" resultType="int" parameterType="com.work.bean.Document">
+   select count(1) from t_document
+   <where>
+         <if test="id!=null">and id = #{ id }</if>
+         <if test="state!=null">and state = #{ state }</if>
+         <if test="author!=null">and author = #{ author }</if>
+         <if test="content!=null">and content = #{ content }</if>
+         <if test="title!=null">and title = #{ title }</if>
+       </where>
+  </select>
+ </mapper>
+ 

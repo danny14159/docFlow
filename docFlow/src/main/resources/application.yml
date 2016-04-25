@@ -1,0 +1,34 @@
+# Server settings  
+server:  
+    port: 80
+    address: localhost  
+  
+# DATASOURCE  
+jdbc:  
+    driverClass: com.mysql.jdbc.Driver  
+    url: jdbc:mysql://115.28.158.206:3306/workflow?useUnicode=true&characterEncoding=utf-8  
+    username: workflow 
+    password: workflowadmin
+  
+# SPRING PROFILES  
+spring:         
+    # HTTP ENCODING  
+    http:  
+        encoding.charset: UTF-8  
+        encoding.enable: true  
+        encoding.force: true  
+    # data source
+    mvc.view:
+        prefix: /front/
+        suffix: .jsp
+          
+# MyBatis  
+mybatis:  
+    typeAliasesPackage: com.work.bean 
+    mapperLocations: classpath:/**/mapper/xml/*.xml  
+    configLocation: classpath:/mybatis-config.xml  
+  
+# LOGGING  
+logging:  
+    level:  
+       com.ibatis: DEBUG

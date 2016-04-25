@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.work.mapper.ReviewDao">
+  <insert id="insert" parameterType="com.work.bean.Review">
+   insert into t_review(id,time,remark,doc_id,dept_id,state) values(#{id},#{time},#{remark},#{doc_id},#{dept_id},#{state});
+  </insert>
+  <delete id="delete" parameterType="com.work.bean.Review">
+   update t_review set delete_state=1
+   <where>
+    id=#{id}
+         <if test="time!=null">and time=#{ time }</if>
+         <if test="remark!=null">and remark=#{ remark }</if>
+         <if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+         <if test="dept_id!=null">and dept_id=#{ dept_id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+       </where>
+  </delete>
+  <update id="update" parameterType="com.work.bean.Review">
+   update t_review
+   <set>
+         <if test="id!=null">id=#{ id },</if>
+         <if test="time!=null">time=#{ time },</if>
+         <if test="remark!=null">remark=#{ remark },</if>
+         <if test="doc_id!=null">doc_id=#{ doc_id },</if>
+         <if test="dept_id!=null">dept_id=#{ dept_id },</if>
+         <if test="state!=null">state=#{ state },</if>
+       </set>
+   <where>
+    id=#{id}
+         <if test="time!=null">and time=#{ time }</if>
+         <if test="remark!=null">and remark=#{ remark }</if>
+         <if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+         <if test="dept_id!=null">and dept_id=#{ dept_id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+       </where>
+  </update>
+  <select id="list" resultType="com.work.bean.Review" parameterType="com.work.bean.Review">
+   select id,time,remark,doc_id,dept_id,state from t_review
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="time!=null">and time=#{ time }</if>
+         <if test="remark!=null">and remark=#{ remark }</if>
+         <if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+         <if test="dept_id!=null">and dept_id=#{ dept_id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+       </where>
+  </select>
+  <select id="listByPage" resultType="com.work.bean.Review" parameterType="com.work.bean.Review">
+   select id,time,remark,doc_id,dept_id,state from t_review
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="time!=null">and time=#{ time }</if>
+         <if test="remark!=null">and remark=#{ remark }</if>
+         <if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+         <if test="dept_id!=null">and dept_id=#{ dept_id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+       </where>
+   limit #{offset},#{rows}
+  </select>
+  <select id="load" resultType="com.work.bean.Review" parameterType="com.work.bean.Review">
+   select id,time,remark,doc_id,dept_id,state from t_review
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="time!=null">and time=#{ time }</if>
+         <if test="remark!=null">and remark=#{ remark }</if>
+         <if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+         <if test="dept_id!=null">and dept_id=#{ dept_id }</if>
+         <if test="state!=null">and state=#{ state }</if>
+       </where>
+   limit 0,1
+  </select>
+  <select id="count" resultType="int" parameterType="com.work.bean.Review">
+   select count(1) from t_review
+   <where>
+         <if test="id!=null">and id = #{ id }</if>
+         <if test="time!=null">and time = #{ time }</if>
+         <if test="remark!=null">and remark = #{ remark }</if>
+         <if test="doc_id!=null">and doc_id = #{ doc_id }</if>
+         <if test="dept_id!=null">and dept_id = #{ dept_id }</if>
+         <if test="state!=null">and state = #{ state }</if>
+       </where>
+  </select>
+ </mapper>
+ 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.work.mapper.DepartmentDao">
+  <insert id="insert" parameterType="com.work.bean.Department">
+   insert into t_department(id,name,leader_id) values(#{id},#{name},#{leader_id});
+  </insert>
+  <delete id="delete" parameterType="com.work.bean.Department">
+   update t_department set delete_state=1
+   <where>
+    id=#{id}
+         <if test="name!=null">and name=#{ name }</if>
+         <if test="leader_id!=null">and leader_id=#{ leader_id }</if>
+       </where>
+  </delete>
+  <update id="update" parameterType="com.work.bean.Department">
+   update t_department
+   <set>
+         <if test="id!=null">id=#{ id },</if>
+         <if test="name!=null">name=#{ name },</if>
+         <if test="leader_id!=null">leader_id=#{ leader_id },</if>
+       </set>
+   <where>
+    id=#{id}
+         <if test="name!=null">and name=#{ name }</if>
+         <if test="leader_id!=null">and leader_id=#{ leader_id }</if>
+       </where>
+  </update>
+  <select id="list" resultType="com.work.bean.Department" parameterType="com.work.bean.Department">
+   select id,name,leader_id from t_department
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="name!=null">and name=#{ name }</if>
+         <if test="leader_id!=null">and leader_id=#{ leader_id }</if>
+       </where>
+  </select>
+  <select id="listByPage" resultType="com.work.bean.Department" parameterType="com.work.bean.Department">
+   select id,name,leader_id from t_department
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="name!=null">and name=#{ name }</if>
+         <if test="leader_id!=null">and leader_id=#{ leader_id }</if>
+       </where>
+   limit #{offset},#{rows}
+  </select>
+  <select id="load" resultType="com.work.bean.Department" parameterType="com.work.bean.Department">
+   select id,name,leader_id from t_department
+   <where>
+         <if test="id!=null">and id=#{ id }</if>
+         <if test="name!=null">and name=#{ name }</if>
+         <if test="leader_id!=null">and leader_id=#{ leader_id }</if>
+       </where>
+   limit 0,1
+  </select>
+  <select id="count" resultType="int" parameterType="com.work.bean.Department">
+   select count(1) from t_department
+   <where>
+         <if test="id!=null">and id = #{ id }</if>
+         <if test="name!=null">and name = #{ name }</if>
+         <if test="leader_id!=null">and leader_id = #{ leader_id }</if>
+       </where>
+  </select>
+ </mapper>
+ 
