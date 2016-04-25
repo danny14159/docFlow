@@ -17,7 +17,7 @@ public class UrgeController extends BasicController<Urge>{
 	@Resource
 	private UrgeDao UrgeDao;
 	
-	public static final String PREFIX="Urge/";
+	public static final String PREFIX="urge/";
 
 	@Override
 	protected String getPrefix() {

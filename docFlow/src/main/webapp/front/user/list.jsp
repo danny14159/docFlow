@@ -16,9 +16,8 @@
 
 <h1 class="page-header">用户 - 查看</h1>
 
-<form class="form-inline">
-<button type="submit" class="btn btn-default">查找</button>
-</form><table class="table table-striped">
+<a class="btn btn-xs btn-link" href="/user/add">添加</a>
+<table class="table table-striped">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	

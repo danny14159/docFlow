@@ -17,7 +17,7 @@ public class DocumentController extends BasicController<Document>{
 	@Resource
 	private DocumentDao DocumentDao;
 	
-	public static final String PREFIX="Document/";
+	public static final String PREFIX="document/";
 
 	@Override
 	protected String getPrefix() {

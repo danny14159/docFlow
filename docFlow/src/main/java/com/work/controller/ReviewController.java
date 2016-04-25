@@ -17,7 +17,7 @@ public class ReviewController extends BasicController<Review>{
 	@Resource
 	private ReviewDao ReviewDao;
 	
-	public static final String PREFIX="Review/";
+	public static final String PREFIX="review/";
 
 	@Override
 	protected String getPrefix() {

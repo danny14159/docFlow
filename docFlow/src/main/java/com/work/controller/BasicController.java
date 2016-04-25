@@ -17,13 +17,13 @@ public abstract class BasicController<BeanType> {
 	public String query(BeanType obj,Model model){
 		
 		model.addAttribute("data", getDao().list(obj));
-		return getPrefix()+"list";
+		return getPrefix()+"/list";
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String add(){
 		
-		return getPrefix()+"add";
+		return getPrefix()+"/insert";
 	}
 	
 	

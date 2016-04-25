@@ -17,7 +17,7 @@ public class UserController extends BasicController<User>{
 	@Resource
 	private UserDao UserDao;
 	
-	public static final String PREFIX="User/";
+	public static final String PREFIX="user/";
 
 	@Override
 	protected String getPrefix() {
