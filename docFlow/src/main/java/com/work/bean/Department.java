@@ -16,9 +16,24 @@ public class Department  {
 	private String name;
 
 	/**
+	 * 领导名字
+	 */
+	private String leader_name;
+	
+	public String getLeader_name() {
+		return leader_name;
+	}
+
+	public void setLeader_name(String leader_name) {
+		this.leader_name = leader_name;
+	}
+
+	/**
 	 * 部门领导
 	 */
 	private Integer leader_id;
+	
+	
 
 	public void setId(Integer id){
 		this.id=id;

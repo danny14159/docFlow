@@ -21,7 +21,7 @@ public abstract class BasicController<BeanType> {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String add(){
+	public String add(Model model){
 		
 		return getPrefix()+"/insert";
 	}

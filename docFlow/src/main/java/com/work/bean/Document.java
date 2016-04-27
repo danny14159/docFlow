@@ -1,4 +1,7 @@
 package com.work.bean;
+
+import java.util.Date;
+
 /**
  * @author 
  *
@@ -9,6 +12,22 @@ public class Document  {
 	 * 
 	 */
 	private Integer id;
+
+	public Date getCreate_time() {
+		return create_time;
+	}
+
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
+	}
+
+	public Date getUpdate_time() {
+		return update_time;
+	}
+
+	public void setUpdate_time(Date update_time) {
+		this.update_time = update_time;
+	}
 
 	/**
 	 * 公文状态
@@ -29,6 +48,20 @@ public class Document  {
 	 * 公文标题
 	 */
 	private String title;
+	
+	private Date create_time;
+
+	private Date update_time;
+	
+	private String[] sig_dept;
+
+	public String[] getSig_dept() {
+		return sig_dept;
+	}
+
+	public void setSig_dept(String[] sig_dept) {
+		this.sig_dept = sig_dept;
+	}
 
 	public void setId(Integer id){
 		this.id=id;

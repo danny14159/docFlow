@@ -55,9 +55,12 @@
     	部门领导
     </label>
     <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputleader_id" placeholder="部门领导" name="leader_id">
+    <select name="leader_id">
+    	<c:forEach items="${users }" var="i">
+    		<option value="${i.id }">${i.name }</option>
+    	</c:forEach>
+    </select>
+      <!-- <input type="text" class="form-control required" id="inputleader_id" placeholder="部门领导" name="leader_id"> -->
     
     </div>
   </div>

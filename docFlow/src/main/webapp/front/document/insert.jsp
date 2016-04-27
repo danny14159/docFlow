@@ -16,68 +16,12 @@
 </head>
 <body>
 
-<h1 class="page-header">公文 - 新增</h1>
+<h1 class="page-header">新建公文</h1>
 
 <form form-ajax class="form-horizontal" id="main-form" action="/document/insert">
 
 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputid" class="col-sm-4 control-label">
-    	id
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputid" placeholder="" name="id">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputstate" class="col-sm-4 control-label">
-    	公文状态
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputstate" placeholder="公文状态" name="state">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputauthor" class="col-sm-4 control-label">
-    	公文作者
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputauthor" placeholder="公文作者" name="author">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputcontent" class="col-sm-4 control-label">
-    	公文内容
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputcontent" placeholder="公文内容" name="content">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
+<div class="col-sm-12">
   <div class="form-group">
     <label for="inputtitle" class="col-sm-4 control-label">
     	公文标题
@@ -90,6 +34,37 @@
     </div>
   </div>
   </div>
+ 
+<div class="col-sm-12">
+  <div class="form-group">
+    <label for="inputcontent" class="col-sm-4 control-label">
+    	公文内容
+    </label>
+    <div class="col-sm-6">
+    <script id="container" name="content" type="text/plain">
+    </script>
+   
+      <!-- <input type="text" class="form-control required" id="inputcontent" placeholder="公文内容" name="content"> -->
+    
+    </div>
+  </div>
+  </div>
+ 
+ <div class="col-sm-12">
+ <label for="inputcontent" class="col-sm-4 control-label">
+ 指定会签部门
+ </label>
+ 
+ <div class="col-sm-6">
+	 <c:forEach items="${dept }" var="i">
+	 
+		 <div>
+		 	<input type="checkbox" name="sig_dept" value="${i.id }"/>${i.name }
+		 </div>
+	 </c:forEach>
+ 
+ </div>
+ </div>
  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -105,6 +80,19 @@
 <script type="text/javascript" src="/static/js/messages_zh.min.js"></script>
 <script type="text/javascript" src="/static/js/form-ajax.js"></script>
 <script type="text/javascript" src="/static/laydate/laydate.js"></script>
+ <!-- 配置文件 -->
+    <script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/static/ueditor/ueditor.all.min.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container',{
+        	toolbars: [
+        	           ['fullscreen', 'source', 'undo', 'redo'],
+        	           ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']
+        	       ]
+        });
+    </script>
 <script type="text/javascript">
 
 </script>
