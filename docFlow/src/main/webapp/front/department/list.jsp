@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<h1 class="page-header">部门 - 查看</h1>
+<h1 class="page-header">部门列表</h1>
 
 <a class="btn btn-xs btn-link" href="/department/add">添加</a><table class="table table-striped">
 <tr>
@@ -45,7 +45,7 @@
 	
 	<td>
 		
-		<c:out value="${i.leader_id}"></c:out>
+		<c:out value="${i.leader_name}"></c:out>
 	</td>
 	
 	<td><button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button></td>

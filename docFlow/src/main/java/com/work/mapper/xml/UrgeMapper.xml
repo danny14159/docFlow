@@ -5,7 +5,7 @@
    insert into t_urge(id,userid,target_id,content,deadline) values(#{id},#{userid},#{target_id},#{content},#{deadline});
   </insert>
   <delete id="delete" parameterType="com.work.bean.Urge">
-   update t_urge set delete_state=1
+   delete from t_urge
    <where>
     id=#{id}
          <if test="userid!=null">and userid=#{ userid }</if>

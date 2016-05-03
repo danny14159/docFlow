@@ -1,6 +1,3 @@
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -14,7 +11,7 @@
 </head>
 <body>
 
-<h1 class="page-header">公文 - 查看</h1>
+<h1 class="page-header">公文列表</h1>
 
 <a class="btn btn-xs btn-link" href="/document/add">添加</a><table class="table table-striped">
 <tr>
@@ -24,12 +21,9 @@
 	<th>id</th>
 	
 	<th>公文状态</th>
-	
-	<th>公文作者</th>
-	
-	<th>公文内容</th>
-	
 	<th>公文标题</th>
+	<th>公文作者</th>
+	<th>创建时间</th>
 	
 	<th>操作</th>
 </tr>
@@ -41,10 +35,14 @@
 		
 		<c:out value="${i.id}"></c:out>
 	</td>
-	
 	<td>
 		
 		<c:out value="${i.state}"></c:out>
+	</td>
+	
+	<td>
+		
+		<c:out value="${i.title}"></c:out>
 	</td>
 	
 	<td>
@@ -54,15 +52,15 @@
 	
 	<td>
 		
-		<c:out value="${i.content}"></c:out>
+		<fmt:formatDate value="${i.create_time }" pattern="yyyy-MM-dd HH:mm"/>
 	</td>
 	
 	<td>
-		
-		<c:out value="${i.title}"></c:out>
-	</td>
+	<a class="btn btn-xs btn-link" href="/document/detail?id=${i.id }">查看内容</a>
+	<a class="btn btn-xs btn-link" href="/document/update?id=${i.id }">修改</a>
+	<button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button>
 	
-	<td><button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button></td>
+	</td>
 </tr>
 </c:forEach>
 </table>

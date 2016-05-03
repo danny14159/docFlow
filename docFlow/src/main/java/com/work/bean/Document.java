@@ -37,7 +37,7 @@ public class Document  {
 	/**
 	 * 公文作者
 	 */
-	private Integer author;
+	private String author;
 
 	/**
 	 * 公文内容
@@ -53,16 +53,6 @@ public class Document  {
 
 	private Date update_time;
 	
-	private String[] sig_dept;
-
-	public String[] getSig_dept() {
-		return sig_dept;
-	}
-
-	public void setSig_dept(String[] sig_dept) {
-		this.sig_dept = sig_dept;
-	}
-
 	public void setId(Integer id){
 		this.id=id;
 	}
@@ -79,11 +69,11 @@ public class Document  {
 		return this.state;
 	}
 
-	public void setAuthor(Integer author){
+	public void setAuthor(String author){
 		this.author=author;
 	}
 
-	public Integer getAuthor(){
+	public String getAuthor(){
 		return this.author;
 	}
 

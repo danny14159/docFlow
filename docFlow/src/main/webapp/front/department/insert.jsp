@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,23 +16,9 @@
 
 <h1 class="page-header">部门 - 新增</h1>
 
-<form form-ajax class="form-horizontal" id="main-form" action="/department/insert">
+<form form-ajax class="form-horizontal" id="main-form" action="/department/insert" forward="/department/">
 
 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputid" class="col-sm-4 control-label">
-    	id
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputid" placeholder="" name="id">
-    
-    </div>
-  </div>
-  </div>
- 
 <div class="col-sm-6">
   <div class="form-group">
     <label for="inputname" class="col-sm-4 control-label">
@@ -56,8 +40,11 @@
     </label>
     <div class="col-sm-6">
     <select name="leader_id">
-    	<c:forEach items="${users }" var="i">
-    		<option value="${i.id }">${i.name }</option>
+    	<c:forEach items="${user }" var="i">
+    		<option value="${i.id }">
+    		<c:if test="${empty i.name }">${i.loginname }</c:if>
+    		<c:if test="${!empty i.name }">${i.name }</c:if>
+    		</option>
     	</c:forEach>
     </select>
       <!-- <input type="text" class="form-control required" id="inputleader_id" placeholder="部门领导" name="leader_id"> -->

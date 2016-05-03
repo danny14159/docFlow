@@ -5,7 +5,7 @@
    insert into t_review(id,time,remark,doc_id,dept_id,state) values(#{id},#{time},#{remark},#{doc_id},#{dept_id},#{state});
   </insert>
   <delete id="delete" parameterType="com.work.bean.Review">
-   update t_review set delete_state=1
+   delete from t_review
    <where>
     id=#{id}
          <if test="time!=null">and time=#{ time }</if>

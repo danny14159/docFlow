@@ -18,7 +18,7 @@
 
 <h1 class="page-header">审阅记录 - 新增</h1>
 
-<form form-ajax class="form-horizontal" id="main-form" action="/review/insert">
+<form form-ajax class="form-horizontal" id="main-form" action="/review/insert" forward="/review/">
 
 
 <div class="col-sm-6">

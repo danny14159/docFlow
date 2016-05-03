@@ -18,7 +18,7 @@
 
 <h1 class="page-header">事务催办 - 新增</h1>
 
-<form form-ajax class="form-horizontal" id="main-form" action="/urge/insert">
+<form form-ajax class="form-horizontal" id="main-form" action="/urge/insert" forward="/urge/">
 
 
 <div class="col-sm-6">

@@ -5,7 +5,7 @@
    insert into t_department(id,name,leader_id) values(#{id},#{name},#{leader_id});
   </insert>
   <delete id="delete" parameterType="com.work.bean.Department">
-   update t_department set delete_state=1
+   delete from t_department
    <where>
     id=#{id}
          <if test="name!=null">and name=#{ name }</if>
@@ -26,7 +26,8 @@
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Department" parameterType="com.work.bean.Department">
-   select id,name,leader_id from t_department
+   select t_department.id,t_department.name,t_department.leader_id,IFNULL(t_user.name,t_user.loginname) as leader_name from t_department
+   left join t_user on t_department.leader_id=t_user.id
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="name!=null">and name=#{ name }</if>

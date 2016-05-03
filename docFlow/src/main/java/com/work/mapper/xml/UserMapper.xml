@@ -5,7 +5,7 @@
    insert into t_user(id,loginname,password,name) values(#{id},#{loginname},#{password},#{name});
   </insert>
   <delete id="delete" parameterType="com.work.bean.User">
-   update t_user set delete_state=1
+   delete from t_user
    <where>
     id=#{id}
          <if test="loginname!=null">and loginname=#{ loginname }</if>

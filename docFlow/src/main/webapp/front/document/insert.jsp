@@ -18,13 +18,13 @@
 
 <h1 class="page-header">新建公文</h1>
 
-<form form-ajax class="form-horizontal" id="main-form" action="/document/insert">
+<form form-ajax class="form-horizontal" id="main-form" action="/document/insert_new" forward="/document/">
 
 
 <div class="col-sm-12">
   <div class="form-group">
     <label for="inputtitle" class="col-sm-4 control-label">
-    	公文标题
+    	标题
     </label>
     <div class="col-sm-6">
     
@@ -34,11 +34,24 @@
     </div>
   </div>
   </div>
+<div class="col-sm-12">
+  <div class="form-group">
+    <label for="inputtitle" class="col-sm-4 control-label">
+    	作者
+    </label>
+    <div class="col-sm-6">
+    
+   
+      <input type="text" class="form-control required" id="inputauthor" placeholder="作者" name="author">
+    
+    </div>
+  </div>
+  </div>
  
 <div class="col-sm-12">
   <div class="form-group">
     <label for="inputcontent" class="col-sm-4 control-label">
-    	公文内容
+    	内容
     </label>
     <div class="col-sm-6">
     <script id="container" name="content" type="text/plain">

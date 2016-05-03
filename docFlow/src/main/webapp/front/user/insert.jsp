@@ -16,25 +16,11 @@
 </head>
 <body>
 
-<h1 class="page-header">用户 - 新增</h1>
+<h1 class="page-header">添加用户</h1>
 
-<form form-ajax class="form-horizontal" id="main-form" action="/user/insert">
+<form form-ajax class="form-horizontal" id="main-form" action="/user/insert" forward='/user/'>
 
 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputid" class="col-sm-4 control-label">
-    	id
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputid" placeholder="" name="id">
-    
-    </div>
-  </div>
-  </div>
- 
 <div class="col-sm-6">
   <div class="form-group">
     <label for="inputloginname" class="col-sm-4 control-label">
