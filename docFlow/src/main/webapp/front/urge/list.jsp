@@ -16,7 +16,8 @@
 
 <h1 class="page-header">事务催办 - 查看</h1>
 
-<a class="btn btn-xs btn-primary" href="/urge/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a><table class="table table-striped">
+<a class="btn btn-xs btn-primary" href="/urge/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a>
+<table class="table table-striped table-bordered">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	

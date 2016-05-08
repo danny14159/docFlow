@@ -27,11 +27,6 @@
        </set>
    <where>
     id=#{id}
-         <if test="time!=null">and time=#{ time }</if>
-         <if test="remark!=null">and remark=#{ remark }</if>
-         <if test="doc_id!=null">and doc_id=#{ doc_id }</if>
-         <if test="dept_id!=null">and dept_id=#{ dept_id }</if>
-         <if test="state!=null">and state=#{ state }</if>
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Review" parameterType="map">
@@ -90,7 +85,7 @@
        </where>
   </select>
   <select id="myReview" parameterType="int" resultType="com.work.bean.Review">
-  select * from t_review tr 
+  select tr.id,time,remark,doc_id,dept_id,tr.state,tp.name as dept_name from t_review tr 
   left join t_department tp on tp.id = tr.dept_id
   left join t_user tu on tu.id = tp.leader_id
   where tu.id=#{userid}

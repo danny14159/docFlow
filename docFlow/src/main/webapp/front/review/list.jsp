@@ -14,7 +14,7 @@
 <h1 class="page-header">审阅记录 - 查看</h1>
 
 <!-- <a class="btn btn-xs btn-primary" href="/review/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a> -->
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	
@@ -63,7 +63,12 @@
 	
 	<td>
 		
-		<c:out value="${i.state}"></c:out>
+		<span class="
+		<c:if test="${i.state eq '同意' }">text-success</c:if>
+		<c:if test="${i.state eq '不同意' }">text-danger</c:if>
+		">
+			<c:out value="${i.state}"></c:out>
+		</span>
 	</td>
 	
 	<td>
@@ -83,7 +88,7 @@
 <script type="text/javascript" src="/static/laypage/laypage.js"></script>
 <script type="text/javascript">
 $(function(){
-	laypage({
+	/* laypage({
 	    cont: "pager",
 	    pages: "${pager.pageCount}", 
 	    curr: "${pager.pageNumber}", 
@@ -92,7 +97,7 @@ $(function(){
 	            location.href = "?ps=${pager.pageSize}&pn="+e.curr;
 	        }
 	    }
-	});
+	}); */
 })
 function toggleSelectAll(self,$sel){
 	if(self.checked)
@@ -120,15 +125,19 @@ function del(id){
 	},'json');
 }
 function update(id,agree){
-	
-	if(!prompt('请在这里填下审阅意见',(agree?'':'不')+'同意')){
+	var msg = "";
+	if(msg = prompt('请在这里填下审阅意见',(agree?'':'不')+'同意')){
 		
 		$.post('/review/update',{
 			id:id,
 			state:(agree?'':'不')+'同意',
+			remark:msg
 		},function(data){
 			if(data){
 				location.reload();
+			}
+			else{
+				alert('修改失败')
 			}
 		})
 	}
