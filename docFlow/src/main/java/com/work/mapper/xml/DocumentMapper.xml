@@ -73,5 +73,8 @@
          <if test="title!=null">and title = #{ title }</if>
        </where>
   </select>
+  <select id="latestId" resultType="int">
+  	select ifnull(max(id),1) from t_document
+  </select>
  </mapper>
  

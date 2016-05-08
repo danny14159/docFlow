@@ -8,5 +8,5 @@ import com.work.bean.Document;
 @Repository
 public interface DocumentDao extends BasicDao<Document> {
 
-
+	public int latestId();
 }

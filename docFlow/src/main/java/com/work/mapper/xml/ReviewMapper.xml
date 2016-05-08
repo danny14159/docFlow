@@ -34,8 +34,17 @@
          <if test="state!=null">and state=#{ state }</if>
        </where>
   </update>
-  <select id="list" resultType="com.work.bean.Review" parameterType="com.work.bean.Review">
-   select id,time,remark,doc_id,dept_id,state from t_review
+  <select id="list" resultType="com.work.bean.Review" parameterType="map">
+   select 
+	   t_review.id,
+	   t_review.time,
+	   t_review.remark,
+	   doc_id,
+	   dept_id,
+	   t_review.state, 
+	   tp.name as dept_name
+   from t_review
+   left join t_department tp on tp.id=t_review.dept_id
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="time!=null">and time=#{ time }</if>

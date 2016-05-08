@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.work.bean.Document;
+import com.work.bean.Review;
 import com.work.mapper.BasicDao;
 import com.work.mapper.DepartmentDao;
 import com.work.mapper.DocumentDao;
+import com.work.mapper.ReviewDao;
 import com.work.util.M;
 
 @Controller
@@ -26,6 +28,8 @@ public class DocumentController extends BasicController<Document>{
 	private DocumentDao DocumentDao;
 	@Resource
 	private DepartmentDao departmentDao;
+	@Resource
+	private ReviewDao reviewDao;
 	
 	public static final String PREFIX="document/";
 
@@ -45,6 +49,18 @@ public class DocumentController extends BasicController<Document>{
 		obj.setState("传阅中");
 		obj.setCreate_time(new Date());
 		
+		//添加公文之后要添加相应的审核记录
+		for(int item:sig_dept){
+			Review review = new Review();
+			
+			review.setDept_id(item);
+			review.setDoc_id(DocumentDao.latestId());
+			
+			review.setState("未处理");
+			
+			reviewDao.insert(review);
+		}
+		
 		return super.insert(obj);
 	}
 
@@ -59,6 +75,7 @@ public class DocumentController extends BasicController<Document>{
 	@RequestMapping("/detail")
 	public String detail(Integer id,Model model){
 		model.addAttribute("data", DocumentDao.load(M.make("id", id).asMap()));
+		model.addAttribute("list", reviewDao.list(M.make("doc_id", id).asMap()));
 		return "document/detail";
 	}
 }

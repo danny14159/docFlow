@@ -14,9 +14,16 @@
 <h1 class="page-header">${data.title }</h1>
 <span class="text-muted">作者：${data.author }<fmt:formatDate value="${data.create_time }" pattern="yyyy-MM-dd HH:mm"/></span><a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
 
+<div>
+指定会签部门：
+	<c:forEach items="${list }" var="i">
+		${i.dept_name }、
+	</c:forEach>
+</div>
 <div class="container">
 ${data.content }
 </div>
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript">
 </script>

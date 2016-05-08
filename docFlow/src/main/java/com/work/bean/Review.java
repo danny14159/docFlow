@@ -30,9 +30,25 @@ public class Review  {
 	 * 部门编号
 	 */
 	private Integer dept_id;
+	
+	/**
+	 * 部门名称
+	 */
+	private String dept_name;
+
+	public String getDept_name() {
+		return dept_name;
+	}
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
 
 	/**
 	 * 审阅状态
+	 * 未处理
+	 * 通过
+	 * 不通过
 	 */
 	private String state;
 
