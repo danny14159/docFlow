@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -25,8 +25,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li> -->
+            <li><a href="#">Settings</a></li>-->
+            <li><a href="#">欢迎你，${me.name }</a></li> 
             <li><a href="/app/login">退出</a></li>
           </ul>
         </div>
@@ -37,11 +37,11 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="/user/" target="main">用户管理</a></li>
-            <li><a href="/department/" target="main">部门管理</a></li>
-            <li><a href="/document/" target="main">公文管理</a></li>
-            <li><a href="/review/" target="main">审阅记录</a></li>
-            <li><a href="/urge/" target="main">事务催办</a></li>
+            <li class="active"><a href="/user/" target="main"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;用户管理</a></li>
+            <li><a href="/department/" target="main"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>&nbsp;部门管理</a></li>
+            <li><a href="/document/" target="main"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp;公文管理</a></li>
+            <li><a href="/review/" target="main"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;审阅记录</a></li>
+            <li><a href="/urge/" target="main"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;事务催办</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

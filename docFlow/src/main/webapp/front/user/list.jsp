@@ -16,7 +16,7 @@
 
 <h1 class="page-header">用户 - 查看</h1>
 
-<a class="btn btn-xs btn-link" href="/user/add">添加</a>
+<a class="btn btn-xs btn-primary" href="/user/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a>
 <table class="table table-striped">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>

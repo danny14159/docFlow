@@ -1,5 +1,8 @@
 package com.work.controller;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +13,8 @@ import com.work.util.AjaxReturn;
 import com.work.util.M;
 
 public abstract class BasicController<BeanType> {
+	@Resource
+	protected HttpServletRequest request;
 	
 	protected abstract String getPrefix();
 	protected abstract BasicDao<BeanType> getDao();

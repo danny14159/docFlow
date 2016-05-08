@@ -35,7 +35,8 @@
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Review" parameterType="com.work.bean.Review">
-   select id,time,remark,doc_id,dept_id,state from t_review
+   select t_review.id,time,remark,doc_id,dept_id,t_review.state,td.name as dept_name from t_review
+   left join t_department td on td.id=t_review.dept_id
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="time!=null">and time=#{ time }</if>
@@ -79,6 +80,12 @@
          <if test="dept_id!=null">and dept_id = #{ dept_id }</if>
          <if test="state!=null">and state = #{ state }</if>
        </where>
+  </select>
+  <select id="myReview" parameterType="int" resultType="com.work.bean.Review">
+  select * from t_review tr 
+  left join t_department tp on tp.id = tr.dept_id
+  left join t_user tu on tu.id = tp.leader_id
+  where tu.id=#{userid}
   </select>
  </mapper>
  

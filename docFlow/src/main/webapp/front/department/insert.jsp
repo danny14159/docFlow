@@ -39,7 +39,7 @@
     	部门领导
     </label>
     <div class="col-sm-6">
-    <select name="leader_id">
+    <select name="leader_id" class="form-control">
     	<c:forEach items="${user }" var="i">
     		<option value="${i.id }">
     		<c:if test="${empty i.name }">${i.loginname }</c:if>

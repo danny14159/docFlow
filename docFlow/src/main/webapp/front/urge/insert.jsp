@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -20,21 +18,6 @@
 
 <form form-ajax class="form-horizontal" id="main-form" action="/urge/insert" forward="/urge/">
 
-
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputid" class="col-sm-4 control-label">
-    	id
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputid" placeholder="" name="id">
-    
-    </div>
-  </div>
-  </div>
- 
 <div class="col-sm-6">
   <div class="form-group">
     <label for="inputuserid" class="col-sm-4 control-label">
