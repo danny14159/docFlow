@@ -1,6 +1,3 @@
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,7 +13,8 @@
 
 <h1 class="page-header">审阅记录 - 查看</h1>
 
-<a class="btn btn-xs btn-link" href="/review/add">添加</a><table class="table table-striped">
+<!-- <a class="btn btn-xs btn-primary" href="/review/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a> -->
+<table class="table table-striped">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	
@@ -27,9 +25,9 @@
 	
 	<th>审阅意见</th>
 	
-	<th>公文编号</th>
+	<th>公文</th>
 	
-	<th>部门编号</th>
+	<th>部门</th>
 	
 	<th>审阅状态</th>
 	
@@ -55,13 +53,12 @@
 	</td>
 	
 	<td>
-		
-		<c:out value="${i.doc_id}"></c:out>
+		<a href="/document/detail?id=${i.doc_id}">查看公文</a>
 	</td>
 	
 	<td>
 		
-		<c:out value="${i.dept_id}"></c:out>
+		<c:out value="${i.dept_name}"></c:out>
 	</td>
 	
 	<td>
@@ -69,7 +66,15 @@
 		<c:out value="${i.state}"></c:out>
 	</td>
 	
-	<td><button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button></td>
+	<td>
+	<c:if test="${i.state eq '未处理' }">
+	
+		<button class="btn btn-xs btn-success" onclick="update(${i.id},true)">同意</button>
+		<button class="btn btn-xs btn-default" onclick="update(${i.id},false)">不同意</button>
+	</c:if>
+	
+	
+	</td>
 </tr>
 </c:forEach>
 </table>
@@ -113,6 +118,20 @@ function del(id){
 			alert('操作失败')
 		}
 	},'json');
+}
+function update(id,agree){
+	
+	if(!prompt('请在这里填下审阅意见',(agree?'':'不')+'同意')){
+		
+		$.post('/review/update',{
+			id:id,
+			state:(agree?'':'不')+'同意',
+		},function(data){
+			if(data){
+				location.reload();
+			}
+		})
+	}
 }
 </script>
 </body>

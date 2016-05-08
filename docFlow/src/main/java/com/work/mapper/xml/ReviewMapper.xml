@@ -89,5 +89,11 @@
          <if test="state!=null">and state = #{ state }</if>
        </where>
   </select>
+  <select id="myReview" parameterType="int" resultType="com.work.bean.Review">
+  select * from t_review tr 
+  left join t_department tp on tp.id = tr.dept_id
+  left join t_user tu on tu.id = tp.leader_id
+  where tu.id=#{userid}
+  </select>
  </mapper>
  

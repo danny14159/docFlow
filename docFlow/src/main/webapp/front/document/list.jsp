@@ -13,7 +13,7 @@
 
 <h1 class="page-header">公文列表</h1>
 
-<a class="btn btn-xs btn-link" href="/document/add">添加</a><table class="table table-striped">
+<a class="btn btn-xs btn-primary" href="/document/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a><table class="table table-striped">
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	

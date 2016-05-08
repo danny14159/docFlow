@@ -76,8 +76,10 @@ public class MainController extends SpringBootServletInitializer{
 	}
 	
 	@RequestMapping("/app/frame")
-	public String frame(){
+	public String frame(HttpServletRequest request){
+		User u = MainController.getCurrentUser(request);
 		
+		if(null == u) return "redirect:/app/login";
 		return "frame";
 	}
 	
