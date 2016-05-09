@@ -54,7 +54,7 @@ public class DocumentController extends BasicController<Document>{
 			Review review = new Review();
 			
 			review.setDept_id(item);
-			review.setDoc_id(DocumentDao.latestId());
+			review.setDoc_id(DocumentDao.latestId() + 1);	
 			
 			review.setState("未处理");
 			

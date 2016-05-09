@@ -25,8 +25,11 @@
     </label>
     <div class="col-sm-6">
     
-   
-      <input type="text" class="form-control required" id="inputuserid" placeholder="催办人" name="userid">
+      <select name="userid" class="form-control">
+   	<c:forEach items="${users }" var="i">
+   		<option value="${i.id }">${i.name }</option>
+   	</c:forEach>
+   </select>
     
     </div>
   </div>
@@ -39,8 +42,12 @@
     </label>
     <div class="col-sm-6">
     
-   
-      <input type="text" class="form-control required" id="inputtarget_id" placeholder="被催办人" name="target_id">
+   <select name="target_id" class="form-control">
+   	<c:forEach items="${users }" var="i">
+   		<option value="${i.id }">${i.name }</option>
+   	</c:forEach>
+   </select>
+      <!-- <input type="text" class="form-control required" id="inputtarget_id" placeholder="被催办人" name="target_id"> -->
     
     </div>
   </div>
