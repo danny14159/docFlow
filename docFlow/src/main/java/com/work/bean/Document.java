@@ -1,6 +1,7 @@
 package com.work.bean;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 
@@ -43,6 +44,16 @@ public class Document  {
 	 * 公文内容
 	 */
 	private String content;
+	
+	private List<Review> results;
+
+	public List<Review> getResults() {
+		return results;
+	}
+
+	public void setResults(List<Review> results) {
+		this.results = results;
+	}
 
 	/**
 	 * 公文标题

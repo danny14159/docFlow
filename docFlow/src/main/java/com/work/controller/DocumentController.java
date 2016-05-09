@@ -2,6 +2,7 @@
 package com.work.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -41,6 +42,18 @@ public class DocumentController extends BasicController<Document>{
 	@Override
 	protected BasicDao<Document> getDao() {
 		return DocumentDao;
+	}
+	
+	@Override
+	public String query(Document obj, Model model) {
+		
+		List<Document> data = getDao().list(obj);
+		
+		for(Document item:data){
+			item.setResults( reviewDao.list(M.make("doc_id", item.getId()).asMap()));
+		}
+		model.addAttribute("data",data);
+		return getPrefix()+"/list";
 	}
 
 	@RequestMapping(value="/insert_new",method=RequestMethod.POST)

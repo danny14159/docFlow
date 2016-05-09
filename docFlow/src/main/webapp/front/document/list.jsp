@@ -24,6 +24,7 @@
 	<th>公文状态</th>
 	<th>公文标题</th>
 	<th>公文作者</th>
+	<th>会审结果</th>
 	<th>创建时间</th>
 	
 	<th>操作</th>
@@ -50,6 +51,12 @@
 		
 		<c:out value="${i.author}"></c:out>
 	</td>
+	<td>
+		<c:forEach items="${i.results }" var="r">
+			${r.dept_name }:${r.state }，
+		</c:forEach>
+	</td>
+	
 	
 	<td>
 		
