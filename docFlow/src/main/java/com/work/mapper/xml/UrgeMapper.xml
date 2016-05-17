@@ -28,7 +28,9 @@
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Urge" parameterType="com.work.bean.Urge">
-   select id,userid,target_id,content,deadline from t_urge
+   select userid,target_id,content,deadline,u1.name as target_name,u2.name as username from t_urge
+   left join t_user u1 on t_urge.target_id=u1.id
+   left join t_user u2 on t_urge.userid=u2.id
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="userid!=null">and userid=#{ userid }</if>

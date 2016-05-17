@@ -18,22 +18,6 @@
 
 <form form-ajax class="form-horizontal" id="main-form" action="/urge/insert" forward="/urge/">
 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputuserid" class="col-sm-4 control-label">
-    	催办人
-    </label>
-    <div class="col-sm-6">
-    
-      <select name="userid" class="form-control">
-   	<c:forEach items="${users }" var="i">
-   		<option value="${i.id }">${i.name }</option>
-   	</c:forEach>
-   </select>
-    
-    </div>
-  </div>
-  </div>
  
 <div class="col-sm-6">
   <div class="form-group">

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
 
 import com.work.bean.User;
+import com.work.mapper.UrgeDao;
 import com.work.mapper.UserDao;
 import com.work.util.M;
 
@@ -34,6 +35,8 @@ public class MainController extends SpringBootServletInitializer{
 	
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private UrgeDao urgeDao;
 	
 	public final static String ME = "me";
 
@@ -76,10 +79,11 @@ public class MainController extends SpringBootServletInitializer{
 	}
 	
 	@RequestMapping("/app/frame")
-	public String frame(HttpServletRequest request){
+	public String frame(HttpServletRequest request,Model model){
 		User u = MainController.getCurrentUser(request);
-		
 		if(null == u) return "redirect:/app/login";
+		
+		model.addAttribute("urge", urgeDao.count(M.make("target_id", u.getId()).asMap()));
 		return "frame";
 	}
 	

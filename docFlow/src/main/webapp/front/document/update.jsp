@@ -15,68 +15,14 @@
 </head>
 <body>
 
-<h1 class="page-header">公文 - 修改</h1>
+<h1 class="page-header">公文 - 修改</h1><a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
 
-<form form-ajax class="form-horizontal" id="main-form" action="/tdocument/update" forward="/tdocument/">
+<form form-ajax class="form-horizontal" id="main-form" action="/document/update" forward="/document/">
 
 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputid" class="col-sm-4 control-label">
-    	id
-    </label>
-    <div class="col-sm-6">
+ <input type="hidden" class="form-control required" id="inputid" placeholder="" name="id" value="${data.id}">
     
-   
-      <input type="text" class="form-control required" id="inputid" placeholder="" name="id" value="${data.id}">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputstate" class="col-sm-4 control-label">
-    	公文状态	
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputstate" placeholder="公文状态" name="state" value="${data.state}">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputauthor" class="col-sm-4 control-label">
-    	公文作者	
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputauthor" placeholder="公文作者" name="author" value="${data.author}">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputcontent" class="col-sm-4 control-label">
-    	公文内容	
-    </label>
-    <div class="col-sm-6">
-    
-   
-      <input type="text" class="form-control required" id="inputcontent" placeholder="公文内容" name="content" value="${data.content}">
-    
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
+ <div class="col-sm-12">
   <div class="form-group">
     <label for="inputtitle" class="col-sm-4 control-label">
     	公文标题	
@@ -90,57 +36,30 @@
   </div>
   </div>
  
-<div class="col-sm-6">
+<div class="col-sm-12">
   <div class="form-group">
-    <label for="inputcreate_time" class="col-sm-4 control-label">
-    	create_time
-    </label>
-    <div class="col-sm-6">
-    
-      <input type="text" class="form-control required laydate-icon" id="inputcreate_time" placeholder="" name="create_time" onclick="laydate()" value="<fmt:formatDate value="${data.create_time}" pattern="yyyy-MM-dd"/>">
-   
-   
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputupdate_time" class="col-sm-4 control-label">
-    	update_time
-    </label>
-    <div class="col-sm-6">
-    
-      <input type="text" class="form-control required laydate-icon" id="inputupdate_time" placeholder="" name="update_time" onclick="laydate()" value="<fmt:formatDate value="${data.update_time}" pattern="yyyy-MM-dd"/>">
-   
-   
-    </div>
-  </div>
-  </div>
- 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="inputcover" class="col-sm-4 control-label">
-    	封面	
+    <label for="inputauthor" class="col-sm-4 control-label">
+    	公文作者	
     </label>
     <div class="col-sm-6">
     
    
-      <input type="text" class="form-control required" id="inputcover" placeholder="封面" name="cover" value="${data.cover}">
+      <input type="text" class="form-control required" id="inputauthor" placeholder="公文作者" name="author" value="${data.author}">
     
     </div>
   </div>
   </div>
  
-<div class="col-sm-6">
+<div class="col-sm-12">
   <div class="form-group">
-    <label for="inputbrief_intro" class="col-sm-4 control-label">
-    	简介	
+    <label for="inputcontent" class="col-sm-4 control-label">
+    	公文内容	
     </label>
     <div class="col-sm-6">
     
-   
-      <input type="text" class="form-control required" id="inputbrief_intro" placeholder="简介" name="brief_intro" value="${data.brief_intro}">
+   <script id="container" name="content" type="text/plain">${data.content}
+    </script>
+  <%--     <input type="text" class="form-control required" id="inputcontent" placeholder="公文内容" name="content" value="${data.content}"> --%>
     
     </div>
   </div>
@@ -159,6 +78,19 @@
 <script type="text/javascript" src="/static/js/messages_zh.min.js"></script>
 <script type="text/javascript" src="/static/js/form-ajax.js"></script>
 <script type="text/javascript" src="/static/laydate/laydate.js"></script>
+ <!-- 配置文件 -->
+    <script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/static/ueditor/ueditor.all.min.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container',{
+        	toolbars: [
+        	           ['fullscreen', 'source', 'undo', 'redo'],
+        	           ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']
+        	       ]
+        });
+    </script>
 <script type="text/javascript">
 
 </script>

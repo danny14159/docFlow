@@ -1,6 +1,3 @@
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,13 +15,10 @@
 
 <a class="btn btn-xs btn-primary" href="/urge/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a>
 <table class="table table-striped table-bordered">
+<caption>我催办的</caption>
 <tr>
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	
-	
-	<th>id</th>
-	
-	<th>催办人</th>
 	
 	<th>被催办人</th>
 	
@@ -40,17 +34,7 @@
 	
 	<td>
 		
-		<c:out value="${i.id}"></c:out>
-	</td>
-	
-	<td>
-		
-		<c:out value="${i.userid}"></c:out>
-	</td>
-	
-	<td>
-		
-		<c:out value="${i.target_id}"></c:out>
+		<c:out value="${i.target_name}"></c:out>
 	</td>
 	
 	<td>
@@ -59,7 +43,7 @@
 	</td>
 	
 	<td>
-		<fmt:formatDate value="${i.deadline}" pattern="yyyy-MM-dd HH:mm:ss"/>
+		<fmt:formatDate value="${i.deadline}" pattern="yyyy-MM-dd"/>
 		
 	</td>
 	
@@ -67,21 +51,50 @@
 </tr>
 </c:forEach>
 </table>
-<div id="pager"></div>
+
+<table class="table table-striped table-bordered">
+<caption>催办我的</caption>
+<tr>
+	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
+	
+	
+	<th>催办人</th>
+	
+	<th>催办内容</th>
+	
+	<th>截止日期</th>
+	
+	<th>操作</th>
+</tr>
+	<c:forEach items="${data1 }" var="i">
+<tr>
+<td><input type="checkbox" checked="checked" name="selectRow"/></td>
+	
+	<td>
+		
+		<c:out value="${i.target_name}"></c:out>
+	</td>
+	
+	<td>
+		
+		<c:out value="${i.content}"></c:out>
+	</td>
+	
+	<td>
+		<fmt:formatDate value="${i.deadline}" pattern="yyyy-MM-dd"/>
+		
+	</td>
+	
+	<td></td>
+</tr>
+</c:forEach>
+</table>
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/laypage/laypage.js"></script>
 <script type="text/javascript">
 $(function(){
-	laypage({
-	    cont: "pager",
-	    pages: "${pager.pageCount}", 
-	    curr: "${pager.pageNumber}", 
-	    jump: function(e, first){ 
-	        if(!first){ 
-	            location.href = "?ps=${pager.pageSize}&pn="+e.curr;
-	        }
-	    }
-	});
+	
 })
 function toggleSelectAll(self,$sel){
 	if(self.checked)

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.work.MainController;
 import com.work.bean.Document;
 import com.work.bean.Review;
+import com.work.bean.User;
 import com.work.mapper.BasicDao;
 import com.work.mapper.DepartmentDao;
 import com.work.mapper.DocumentDao;
@@ -46,7 +48,8 @@ public class DocumentController extends BasicController<Document>{
 	
 	@Override
 	public String query(Document obj, Model model) {
-		
+		User u = MainController.getCurrentUser(request);
+		obj.setCreate_user(u.getId());
 		List<Document> data = getDao().list(obj);
 		
 		for(Document item:data){
@@ -59,8 +62,11 @@ public class DocumentController extends BasicController<Document>{
 	@RequestMapping(value="/insert_new",method=RequestMethod.POST)
 	@ResponseBody
 	public Object insert(@RequestParam(value="sig_dept[]",required=false) Integer[] sig_dept,Document obj) {
+		User u = MainController.getCurrentUser(request);
+		
 		obj.setState("传阅中");
 		obj.setCreate_time(new Date());
+		obj.setCreate_user(u.getId());
 		
 		//添加公文之后要添加相应的审核记录
 		for(int item:sig_dept){

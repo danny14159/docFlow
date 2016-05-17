@@ -19,7 +19,6 @@
 	<th><input type="checkbox" onchange="toggleSelectAll(this,$('[name=selectRow]'));"/></th>
 	
 	
-	<th>id</th>
 	
 	<th>公文状态</th>
 	<th>公文标题</th>
@@ -33,10 +32,6 @@
 <tr>
 <td><input type="checkbox" checked="checked" name="selectRow"/></td>
 	
-	<td>
-		
-		<c:out value="${i.id}"></c:out>
-	</td>
 	<td>
 		
 		<c:out value="${i.state}"></c:out>
@@ -65,7 +60,7 @@
 	
 	<td>
 	<a class="btn btn-xs btn-link" href="/document/detail?id=${i.id }">查看内容</a>
-	<a class="btn btn-xs btn-link" href="/document/update?id=${i.id }">修改</a>
+	<a class="btn btn-xs btn-link" href="/document/update/${i.id }">修改</a>
 	<button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button>
 	
 	</td>

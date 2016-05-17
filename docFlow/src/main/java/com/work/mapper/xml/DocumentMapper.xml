@@ -35,6 +35,7 @@
          <if test="author!=null">and author=#{ author }</if>
          <if test="content!=null">and content=#{ content }</if>
          <if test="title!=null">and title=#{ title }</if>
+         <if test="create_user!=null">and create_user=#{ create_user }</if>
        </where>
   </select>
   <select id="listByPage" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">

@@ -14,11 +14,31 @@ public class Urge  {
 	 * 催办人
 	 */
 	private Integer userid;
+	
+	private String username;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	/**
 	 * 被催办人
 	 */
 	private Integer target_id;
+	
+	private String target_name;
+
+	public String getTarget_name() {
+		return target_name;
+	}
+
+	public void setTarget_name(String target_name) {
+		this.target_name = target_name;
+	}
 
 	/**
 	 * 催办内容
