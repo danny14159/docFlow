@@ -24,6 +24,16 @@ public class User  {
 	 * 显示名
 	 */
 	private String name;
+	
+	private String type;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public void setId(Integer id){
 		this.id=id;

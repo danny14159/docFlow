@@ -2,7 +2,7 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.work.mapper.DocumentDao">
   <insert id="insert" parameterType="com.work.bean.Document">
-   insert into t_document(id,state,author,content,title,create_time) values(#{id},#{state},#{author},#{content},#{title},#{create_time});
+   insert into t_document(id,state,author,content,title,create_user) values(#{id},#{state},#{author},#{content},#{title},#{create_user});
   </insert>
   <delete id="delete" parameterType="com.work.bean.Document">
    delete from t_document
@@ -25,10 +25,6 @@
        </set>
    <where>
     id=#{id}
-         <if test="state!=null">and state=#{ state }</if>
-         <if test="author!=null">and author=#{ author }</if>
-         <if test="content!=null">and content=#{ content }</if>
-         <if test="title!=null">and title=#{ title }</if>
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">

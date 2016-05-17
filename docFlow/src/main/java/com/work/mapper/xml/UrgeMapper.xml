@@ -25,10 +25,6 @@
        </set>
    <where>
     id=#{id}
-         <if test="userid!=null">and userid=#{ userid }</if>
-         <if test="target_id!=null">and target_id=#{ target_id }</if>
-         <if test="content!=null">and content=#{ content }</if>
-         <if test="deadline!=null">and deadline=#{ deadline }</if>
        </where>
   </update>
   <select id="list" resultType="com.work.bean.Urge" parameterType="com.work.bean.Urge">

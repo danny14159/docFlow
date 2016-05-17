@@ -57,7 +57,7 @@ body{}
 <div class="container">
 
       <form class="form-signin" action="/app/login" method="post">
-        <h2 class="form-signin-heading">欢迎</h2>${msg }
+        <h3 class="form-signin-heading">欢迎使用公文流转系统</h3>${msg }
         <label for="inputEmail" class="sr-only">用户名</label>
         <input type="text" name="username" class="form-control" placeholder="用户名" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>

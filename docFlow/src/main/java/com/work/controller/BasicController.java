@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +31,18 @@ public abstract class BasicController<BeanType> {
 	public String add(Model model){
 		
 		return getPrefix()+"/insert";
+	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String update(@PathVariable String id,Model model) {
+		model.addAttribute("data", getDao().load(M.make("id", id).asMap()));
+		return getPrefix() + "update";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@ResponseBody
+	public Object update(BeanType obj) {
+		return getDao().update(obj);
 	}
 	
 	

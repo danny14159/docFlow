@@ -27,6 +27,7 @@
 	
 	<th>显示名</th>
 	
+	<th>角色</th>
 	<th>操作</th>
 </tr>
 	<c:forEach items="${data }" var="i">
@@ -44,16 +45,31 @@
 	</td>
 	
 	<td>
-		
-		<c:out value="${i.password}"></c:out>
+		<c:if test="${me.type == 'C' }">
+			******
+		</c:if>
+		<c:if test="${me.type == 'M' }">
+			<c:out value="${i.password}"></c:out>
+		</c:if>
 	</td>
 	
 	<td>
 		
 		<c:out value="${i.name}"></c:out>
 	</td>
+	<td>
+		<c:if test="${i.type == 'C' }">普通用户</c:if>
+		<c:if test="${i.type == 'M' }">管理员</c:if>
+	</td>
 	
-	<td><button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button></td>
+	
+	
+	<td>
+	<c:if test="${me.type == 'M' }">
+	<button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button>
+	<a class="btn btn-xs btn-link" href="/user/update/${i.id }">修改</a>
+	</c:if>
+	</td>
 </tr>
 </c:forEach>
 </table>

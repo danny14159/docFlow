@@ -2,7 +2,7 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.work.mapper.UserDao">
   <insert id="insert" parameterType="com.work.bean.User">
-   insert into t_user(id,loginname,password,name) values(#{id},#{loginname},#{password},#{name});
+   insert into t_user(*) values(#{id},#{loginname},#{password},#{name});
   </insert>
   <delete id="delete" parameterType="com.work.bean.User">
    delete from t_user
@@ -23,13 +23,10 @@
        </set>
    <where>
     id=#{id}
-         <if test="loginname!=null">and loginname=#{ loginname }</if>
-         <if test="password!=null">and password=#{ password }</if>
-         <if test="name!=null">and name=#{ name }</if>
        </where>
   </update>
   <select id="list" resultType="com.work.bean.User" parameterType="com.work.bean.User">
-   select id,loginname,password,name from t_user
+   select * from t_user
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="loginname!=null">and loginname=#{ loginname }</if>
@@ -38,7 +35,7 @@
        </where>
   </select>
   <select id="listByPage" resultType="com.work.bean.User" parameterType="com.work.bean.User">
-   select id,loginname,password,name from t_user
+   select * from t_user
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="loginname!=null">and loginname=#{ loginname }</if>
@@ -48,7 +45,7 @@
    limit #{offset},#{rows}
   </select>
   <select id="load" resultType="com.work.bean.User" parameterType="com.work.bean.User">
-   select id,loginname,password,name from t_user
+   select * from t_user
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="loginname!=null">and loginname=#{ loginname }</if>

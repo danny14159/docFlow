@@ -39,6 +39,16 @@ public class Document  {
 	 * 公文作者
 	 */
 	private String author;
+	
+	private Integer create_user;
+
+	public Integer getCreate_user() {
+		return create_user;
+	}
+
+	public void setCreate_user(Integer create_user) {
+		this.create_user = create_user;
+	}
 
 	/**
 	 * 公文内容
