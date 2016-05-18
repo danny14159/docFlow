@@ -1,77 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" ?>
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.work.mapper.DocumentDao">
-  <insert id="insert" parameterType="com.work.bean.Document">
-   insert into t_document(id,state,author,content,title,create_user) values(#{id},#{state},#{author},#{content},#{title},#{create_user});
-  </insert>
-  <delete id="delete" parameterType="com.work.bean.Document">
-   delete from t_document
-   <where>
-    id=#{id}
-         <if test="state!=null">and state=#{ state }</if>
-         <if test="author!=null">and author=#{ author }</if>
-         <if test="content!=null">and content=#{ content }</if>
-         <if test="title!=null">and title=#{ title }</if>
-       </where>
-  </delete>
-  <update id="update" parameterType="com.work.bean.Document">
-   update t_document
-   <set>
-         <if test="id!=null">id=#{ id },</if>
-         <if test="state!=null">state=#{ state },</if>
-         <if test="author!=null">author=#{ author },</if>
-         <if test="content!=null">content=#{ content },</if>
-         <if test="title!=null">title=#{ title },</if>
-       </set>
-   <where>
-    id=#{id}
-       </where>
-  </update>
-  <select id="list" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">
-   select id,state,author,content,title,create_time from t_document
-   <where>
-         <if test="id!=null">and id=#{ id }</if>
-         <if test="state!=null">and state=#{ state }</if>
-         <if test="author!=null">and author=#{ author }</if>
-         <if test="content!=null">and content=#{ content }</if>
-         <if test="title!=null">and title=#{ title }</if>
-         <if test="create_user!=null">and create_user=#{ create_user }</if>
-       </where>
-  </select>
-  <select id="listByPage" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">
-   select id,state,author,content,title,create_time from t_document
-   <where>
-         <if test="id!=null">and id=#{ id }</if>
-         <if test="state!=null">and state=#{ state }</if>
-         <if test="author!=null">and author=#{ author }</if>
-         <if test="content!=null">and content=#{ content }</if>
-         <if test="title!=null">and title=#{ title }</if>
-       </where>
-   limit #{offset},#{rows}
-  </select>
-  <select id="load" resultType="com.work.bean.Document" parameterType="com.work.bean.Document">
-   select id,state,author,content,title,create_time from t_document
-   <where>
-         <if test="id!=null">and id=#{ id }</if>
-         <if test="state!=null">and state=#{ state }</if>
-         <if test="author!=null">and author=#{ author }</if>
-         <if test="content!=null">and content=#{ content }</if>
-         <if test="title!=null">and title=#{ title }</if>
-       </where>
-   limit 0,1
-  </select>
-  <select id="count" resultType="int" parameterType="com.work.bean.Document">
-   select count(1) from t_document
-   <where>
-         <if test="id!=null">and id = #{ id }</if>
-         <if test="state!=null">and state = #{ state }</if>
-         <if test="author!=null">and author = #{ author }</if>
-         <if test="content!=null">and content = #{ content }</if>
-         <if test="title!=null">and title = #{ title }</if>
-       </where>
-  </select>
-  <select id="latestId" resultType="int">
-  	select ifnull(max(id),1) from t_document
-  </select>
- </mapper>
+<mapper namespace="com.work.mapper.DocumentDao">
+	<insert id="insert" parameterType="com.work.bean.Document">
+		insert into t_document(id,state,author,content,title,create_user,appendix,create_time,cover)
+		values(#{id},#{state},#{author},#{content},#{title},#{create_user},#{appendix},#{create_time},#{cover});
+	</insert>
+	<delete id="delete" parameterType="com.work.bean.Document">
+		delete from t_document
+		<where>
+			id=#{id}
+			<if test="state!=null">and state=#{ state }</if>
+			<if test="author!=null">and author=#{ author }</if>
+			<if test="content!=null">and content=#{ content }</if>
+			<if test="title!=null">and title=#{ title }</if>
+		</where>
+	</delete>
+	<update id="update" parameterType="com.work.bean.Document">
+		update t_document
+		<set>
+			<if test="id!=null">id=#{ id },</if>
+			<if test="state!=null">state=#{ state },</if>
+			<if test="author!=null">author=#{ author },</if>
+			<if test="content!=null">content=#{ content },</if>
+			<if test="title!=null">title=#{ title },</if>
+		</set>
+		<where>
+			id=#{id}
+		</where>
+	</update>
+	<select id="list" resultType="com.work.bean.Document"
+		parameterType="com.work.bean.Document">
+		select * from t_document
+		<where>
+			<if test="id!=null">and id=#{ id }</if>
+			<if test="state!=null">and state=#{ state }</if>
+			<if test="author!=null">and author=#{ author }</if>
+			<if test="content!=null">and content=#{ content }</if>
+			<if test="title!=null">and title=#{ title }</if>
+			<if test="create_user!=null">and create_user=#{ create_user }</if>
+		</where>
+	</select>
+	<select id="listByPage" resultType="com.work.bean.Document"
+		parameterType="com.work.bean.Document">
+		select * from t_document
+		<where>
+			<if test="id!=null">and id=#{ id }</if>
+			<if test="state!=null">and state=#{ state }</if>
+			<if test="author!=null">and author=#{ author }</if>
+			<if test="content!=null">and content=#{ content }</if>
+			<if test="title!=null">and title=#{ title }</if>
+		</where>
+		limit #{offset},#{rows}
+	</select>
+	<select id="load" resultType="com.work.bean.Document"
+		parameterType="com.work.bean.Document">
+		select * from t_document
+		<where>
+			<if test="id!=null">and id=#{ id }</if>
+			<if test="state!=null">and state=#{ state }</if>
+			<if test="author!=null">and author=#{ author }</if>
+			<if test="content!=null">and content=#{ content }</if>
+			<if test="title!=null">and title=#{ title }</if>
+		</where>
+		limit 0,1
+	</select>
+	<select id="count" resultType="int" parameterType="com.work.bean.Document">
+		select count(1) from t_document
+		<where>
+			<if test="id!=null">and id = #{ id }</if>
+			<if test="state!=null">and state = #{ state }</if>
+			<if test="author!=null">and author = #{ author }</if>
+			<if test="content!=null">and content = #{ content }</if>
+			<if test="title!=null">and title = #{ title }</if>
+		</where>
+	</select>
+	<select id="latestId" resultType="int">
+		select ifnull(max(id),1) from t_document
+	</select>
+</mapper>
  

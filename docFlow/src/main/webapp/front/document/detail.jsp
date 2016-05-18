@@ -11,8 +11,18 @@
 </head>
 <body>
 
-<h1 class="page-header">${data.title }</h1>
-<span class="text-muted">作者：${data.author }<fmt:formatDate value="${data.create_time }" pattern="yyyy-MM-dd HH:mm"/></span><a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
+<h1 class="page-header">标题：${data.title }</h1>
+<a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
+<c:if test="${data.appendix!=null}">
+			<a href="/document/getAppendix/${data.id }">下载附件</a>
+		</c:if>
+		<c:if test="${data.appendix==null}">
+			<span class="text-muted">无附件</span>
+		</c:if>
+<hr/>
+
+<br/>
+<span class="text-muted">作者：${data.author }<fmt:formatDate value="${data.create_time }" pattern="yyyy-MM-dd HH:mm"/></span>
 
 <div>
 指定会签部门：
@@ -20,6 +30,7 @@
 		${i.dept_name }、
 	</c:forEach>
 </div>
+<hr/>
 <div class="container">
 ${data.content }
 </div>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.work.mapper.FilesDao">
+	<insert id="insert" parameterType="com.work.bean.Files">
+		insert into t_files(name,create_time,doc_id,content)
+		values(#{name},#{create_time},#{doc_id},#{ content,jdbcType=BLOB })
+	</insert>
+	<delete id="delete" parameterType="com.work.bean.Files">
+		update t_files set delete_state=1
+		<where>
+			id=#{id}
+			<if test="name!=null">and name=#{ name }</if>
+			<if test="create_time!=null">and create_time=#{ create_time }</if>
+			<if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+			<if test="content!=null">and content=#{ content,jdbcType=BLOB }</if>
+		</where>
+	</delete>
+	<update id="update" parameterType="com.work.bean.Files">
+		update t_files
+		<set>
+			<if test="id!=null">id=#{ id },</if>
+			<if test="name!=null">name=#{ name },</if>
+			<if test="create_time!=null">create_time=#{ create_time },</if>
+			<if test="doc_id!=null">doc_id=#{ doc_id },</if>
+			<if test="content!=null">content=#{ content,jdbcType=BLOB },</if>
+		</set>
+		<where>
+			id=#{id}
+		</where>
+	</update>
+	<select id="list" resultType="com.work.bean.Files"
+		parameterType="com.work.bean.Files">
+		select id,name,create_time,doc_id,content from t_files
+		<where>
+			<if test="id!=null">and id=#{ id }</if>
+			<if test="name!=null">and name=#{ name }</if>
+			<if test="create_time!=null">and create_time=#{ create_time }</if>
+			<if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+			<if test="content!=null">and content=#{ content,jdbcType=BLOB }</if>
+		</where>
+	</select>
+	<select id="listByPage" resultType="com.work.bean.Files"
+		parameterType="com.work.bean.Files">
+		select id,name,create_time,doc_id,content from t_files
+		<where>
+			<if test="id!=null">and id=#{ id }</if>
+			<if test="name!=null">and name=#{ name }</if>
+			<if test="create_time!=null">and create_time=#{ create_time }</if>
+			<if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+			<if test="content!=null">and content=#{ content,jdbcType=BLOB }</if>
+		</where>
+		limit #{offset},#{rows}
+	</select>
+	<select id="load" resultType="com.work.bean.Files"
+		parameterType="com.work.bean.Files">
+		select id,name,create_time,doc_id,content from t_files
+		<where>
+			<if test="id!=null">and id=#{ id }</if>
+			<if test="name!=null">and name=#{ name }</if>
+			<if test="create_time!=null">and create_time=#{ create_time }</if>
+			<if test="doc_id!=null">and doc_id=#{ doc_id }</if>
+			<if test="content!=null">and content=#{ content,jdbcType=BLOB }</if>
+		</where>
+		limit 0,1
+	</select>
+	<select id="count" resultType="int" parameterType="com.work.bean.Files">
+		select count(1) from t_files
+		<where>
+			<if test="id!=null">and id = #{ id }</if>
+			<if test="name!=null">and name = #{ name }</if>
+			<if test="create_time!=null">and create_time = #{ create_time }</if>
+			<if test="doc_id!=null">and doc_id = #{ doc_id }</if>
+			<if test="content!=null">and content = #{ content,jdbcType=BLOB }</if>
+		</where>
+	</select>
+</mapper>
+ 

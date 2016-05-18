@@ -1,17 +1,22 @@
 
 package com.work.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.work.MainController;
 import com.work.bean.Document;
@@ -20,6 +25,7 @@ import com.work.bean.User;
 import com.work.mapper.BasicDao;
 import com.work.mapper.DepartmentDao;
 import com.work.mapper.DocumentDao;
+import com.work.mapper.FilesDao;
 import com.work.mapper.ReviewDao;
 import com.work.util.M;
 
@@ -33,6 +39,8 @@ public class DocumentController extends BasicController<Document>{
 	private DepartmentDao departmentDao;
 	@Resource
 	private ReviewDao reviewDao;
+	@Resource
+	private FilesDao filesDao;
 	
 	public static final String PREFIX="document/";
 
@@ -60,27 +68,40 @@ public class DocumentController extends BasicController<Document>{
 	}
 
 	@RequestMapping(value="/insert_new",method=RequestMethod.POST)
-	@ResponseBody
-	public Object insert(@RequestParam(value="sig_dept[]",required=false) Integer[] sig_dept,Document obj) {
+	public String insert(
+			@RequestParam(value="sig_dept[]",required=false) 
+			Integer[] sig_dept,
+			Document obj,
+			MultipartFile file) throws IOException {
 		User u = MainController.getCurrentUser(request);
+		
 		
 		obj.setState("传阅中");
 		obj.setCreate_time(new Date());
 		obj.setCreate_user(u.getId());
+		obj.setCover(file.getOriginalFilename());
 		
-		//添加公文之后要添加相应的审核记录
-		for(int item:sig_dept){
-			Review review = new Review();
-			
-			review.setDept_id(item);
-			review.setDoc_id(DocumentDao.latestId() + 1);	
-			
-			review.setState("未处理");
-			
-			reviewDao.insert(review);
+		if(file!=null && !file.isEmpty()){
+			obj.setAppendix(file.getBytes());
 		}
 		
-		return super.insert(obj);
+		//添加公文之后要添加相应的审核记录
+		
+		if(sig_dept!=null)
+			for(int item:sig_dept){
+				Review review = new Review();
+				
+				review.setDept_id(item);
+				review.setDoc_id(DocumentDao.latestId() + 1);	
+				
+				review.setState("未处理");
+				
+				reviewDao.insert(review);
+			}
+		
+		super.insert(obj);
+		
+		return "redirect:/document/";
 	}
 
 	@Override
@@ -96,6 +117,21 @@ public class DocumentController extends BasicController<Document>{
 		model.addAttribute("data", DocumentDao.load(M.make("id", id).asMap()));
 		model.addAttribute("list", reviewDao.list(M.make("doc_id", id).asMap()));
 		return "document/detail";
+	}
+	
+	@RequestMapping("/getAppendix/{id}")
+	public void download(@PathVariable Integer id,HttpServletResponse response) throws IOException{
+		
+		Document doc = DocumentDao.load(M.make("id", id).asMap());
+		response.setCharacterEncoding("utf-8");
+        response.setContentType("multipart/form-data");
+        response.setHeader("Content-Disposition", "attachment;fileName="
+                + doc.getCover());
+		
+		OutputStream os = response.getOutputStream();
+		os.write(doc.getAppendix());
+		
+		os.close();
 	}
 }
     

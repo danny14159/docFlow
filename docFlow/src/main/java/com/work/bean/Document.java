@@ -13,6 +13,16 @@ public class Document  {
 	 * 
 	 */
 	private Integer id;
+	
+	private String cover;
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
 
 	public Date getCreate_time() {
 		return create_time;
@@ -41,6 +51,19 @@ public class Document  {
 	private String author;
 	
 	private Integer create_user;
+	
+	/**
+	 * 附件
+	 */
+	private byte[] appendix;
+
+	public byte[] getAppendix() {
+		return appendix;
+	}
+
+	public void setAppendix(byte[] appendix) {
+		this.appendix = appendix;
+	}
 
 	public Integer getCreate_user() {
 		return create_user;

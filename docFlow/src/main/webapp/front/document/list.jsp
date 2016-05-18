@@ -25,6 +25,7 @@
 	<th>公文作者</th>
 	<th>会审结果</th>
 	<th>创建时间</th>
+	<th>附件</th>
 	
 	<th>操作</th>
 </tr>
@@ -56,6 +57,15 @@
 	<td>
 		
 		<fmt:formatDate value="${i.create_time }" pattern="yyyy-MM-dd HH:mm"/>
+	</td>
+	
+	<td>
+		<c:if test="${i.appendix!=null}">
+			<a href="/document/getAppendix/${i.id }">下载附件</a>
+		</c:if>
+		<c:if test="${i.appendix==null}">
+			<span class="text-muted">无附件</span>
+		</c:if>
 	</td>
 	
 	<td>

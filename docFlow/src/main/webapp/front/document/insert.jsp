@@ -15,8 +15,13 @@
 <body>
 
 <h1 class="page-header">新建公文</h1>
+<!-- <form enctype="multipart/form-data" method="post" action="/document/appendix">
+	<input type="text" name="name"/>
+	<input type="file" name="file"/>
+	<button>添加附件</button>
+</form> -->
 
-<form form-ajax class="form-horizontal" id="main-form" action="/document/insert_new" forward="/document/">
+<form class="form-horizontal" enctype="multipart/form-data" method="post"  id="main-form" action="/document/insert_new" forward="/document/">
 
 
 <div class="col-sm-12">
@@ -56,6 +61,18 @@
     </script>
    
       <!-- <input type="text" class="form-control required" id="inputcontent" placeholder="公文内容" name="content"> -->
+    
+    </div>
+  </div>
+  </div>
+<div class="col-sm-12">
+  <div class="form-group">
+    <label for="inputcontent" class="col-sm-4 control-label">
+    	附件
+    </label>
+    <div class="col-sm-6">
+   
+	<input type="file" class="form-control required"  name="file">
     
     </div>
   </div>
