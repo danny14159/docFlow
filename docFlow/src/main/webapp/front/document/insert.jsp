@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-
+<a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
 <h1 class="page-header">新建公文</h1>
 <!-- <form enctype="multipart/form-data" method="post" action="/document/appendix">
 	<input type="text" name="name"/>

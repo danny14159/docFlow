@@ -15,6 +15,19 @@ public class Document  {
 	private Integer id;
 	
 	private String cover;
+	
+	/**
+	 * 消息摘要
+	 */
+	private String digest;
+
+	public String getDigest() {
+		return digest;
+	}
+
+	public void setDigest(String digest) {
+		this.digest = digest;
+	}
 
 	public String getCover() {
 		return cover;

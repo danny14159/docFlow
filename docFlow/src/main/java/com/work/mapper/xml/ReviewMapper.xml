@@ -24,6 +24,7 @@
          <if test="doc_id!=null">doc_id=#{ doc_id },</if>
          <if test="dept_id!=null">dept_id=#{ dept_id },</if>
          <if test="state!=null">state=#{ state },</if>
+         <if test="digest!=null">digest=#{ digest },</if>
        </set>
    <where>
     id=#{id}
@@ -34,12 +35,15 @@
 	   t_review.id,
 	   t_review.time,
 	   t_review.remark,
+	   t_review.digest,
 	   doc_id,
 	   dept_id,
+	   tu.publicKey as author_publicKey,
 	   t_review.state, 
 	   tp.name as dept_name
    from t_review
    left join t_department tp on tp.id=t_review.dept_id
+   left join t_user tu on tu.id = tp.leader_id
    <where>
          <if test="id!=null">and id=#{ id }</if>
          <if test="time!=null">and time=#{ time }</if>
@@ -85,7 +89,14 @@
        </where>
   </select>
   <select id="myReview" parameterType="int" resultType="com.work.bean.Review">
-  select tr.id,time,remark,doc_id,dept_id,tr.state,tp.name as dept_name from t_review tr 
+  select tr.id,
+  time,
+  remark,
+  doc_id,
+  dept_id,
+  tu.publicKey as author_publicKey,
+  tr.state,tp.name as dept_name,tr.digest 
+  from t_review tr 
   left join t_department tp on tp.id = tr.dept_id
   left join t_user tu on tu.id = tp.leader_id
   where tu.id=#{userid}

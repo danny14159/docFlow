@@ -10,7 +10,6 @@
 <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-
 <h1 class="page-header">部门列表</h1>
 
 <c:if test="${me.type == 'M' }">

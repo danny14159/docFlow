@@ -10,7 +10,6 @@
 <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-
 <h1 class="page-header">用户 - 查看</h1>
 
 <a class="btn btn-xs btn-primary" href="/user/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a>
@@ -26,6 +25,8 @@
 	<th>显示名</th>
 	
 	<th>角色</th>
+	<th>公钥</th>
+	<th>私钥</th>
 	<th>操作</th>
 </tr>
 	<c:forEach items="${data }" var="i">
@@ -55,7 +56,22 @@
 		<c:if test="${i.type == 'M' }">管理员</c:if>
 	</td>
 	
-	
+	<td>
+		<button class="btn btn-xs btn-primary" onclick="layer.msg($(this).next().html(), {time: 5000, icon:6,closeBtn:1});">查看公钥</button>
+		<div style="display: none;">
+		  ${i.publicKey }
+		</div>
+	</td>
+	<td>
+		<c:if test="${me.type == 'M' }">
+			<button class="btn btn-xs btn-primary" onclick="layer.msg($(this).next().html(), {time: 5000, icon:6,closeBtn:1});">查看私钥</button>
+			<div style="display: none;">
+			  ${i.privateKey }
+			</div>
+
+	</c:if>
+		<c:if test="${me.type == 'C' }">******</c:if>
+	</td>
 	
 	<td>
 	<c:if test="${me.type == 'M' }">
@@ -68,6 +84,7 @@
 </table>
 <div id="pager"></div>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/layer/layer.js"></script>
 <script type="text/javascript" src="/static/laypage/laypage.js"></script>
 <script type="text/javascript">
 $(function(){

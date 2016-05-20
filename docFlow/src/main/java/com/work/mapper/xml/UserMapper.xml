@@ -2,7 +2,8 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.work.mapper.UserDao">
   <insert id="insert" parameterType="com.work.bean.User">
-   insert into t_user(*) values(#{id},#{loginname},#{password},#{name});
+   insert into t_user(id,loginname,password,name,privateKey,publicKey) 
+   values(#{id},#{loginname},#{password},#{name},#{privateKey},#{publicKey});
   </insert>
   <delete id="delete" parameterType="com.work.bean.User">
    delete from t_user

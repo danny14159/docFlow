@@ -75,6 +75,7 @@ public class Coder {
 		return sha.digest();
 	}
 	
+	
 	/**
 	 * 初始化密钥
 	 * @return
@@ -82,7 +83,7 @@ public class Coder {
 	 */
 	public static Map<String,Object> initKey()throws Exception{
 		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(KEY_ALGORTHM);
-		keyPairGenerator.initialize(1024);
+		keyPairGenerator.initialize(512);
 		KeyPair keyPair = keyPairGenerator.generateKeyPair();
 		
 		//公钥
@@ -103,7 +104,7 @@ public class Coder {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPublicKey(Map<String, Object> keyMap)throws Exception{
+	public static String getPublicKey(Map<String,Object> keyMap)throws Exception{
 		Key key = (Key) keyMap.get(PUBLIC_KEY);  
 		return encryptBASE64(key.getEncoded());     
 	}
@@ -114,7 +115,7 @@ public class Coder {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPrivateKey(Map<String, Object> keyMap) throws Exception{
+	public static String getPrivateKey(Map<String,Object> keyMap) throws Exception{
 		Key key = (Key) keyMap.get(PRIVATE_KEY);  
 		return encryptBASE64(key.getEncoded());     
 	}
@@ -237,7 +238,7 @@ public class Coder {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean verify(byte[] data,String publicKey,String sign)throws Exception{
+	public static boolean verify(byte[] data,String sign,String publicKey)throws Exception{
 		//解密公钥
 		byte[] keyBytes = decryptBASE64(publicKey);
 		//构造X509EncodedKeySpec对象
@@ -253,5 +254,24 @@ public class Coder {
 		//验证签名是否正常
 		return signature.verify(decryptBASE64(sign));
 		
+	}
+	
+	public static void main(String[] args) throws Exception {
+		/*initKey();
+		String privateKey = getPrivateKey();
+		String publicKey = getPublicKey();
+		System.out.println("私钥"+privateKey);
+		System.out.println("公钥"+publicKey);
+
+		String info = "userinfo1";
+		for(int i = 0;i<100000;i++){
+			info += "a";
+		}
+		
+		String digest = sign(info.getBytes());
+		System.out.println("摘要"+digest);
+		
+		
+		System.out.println(verify("userinfo1".getBytes(),digest));*/
 	}
 }

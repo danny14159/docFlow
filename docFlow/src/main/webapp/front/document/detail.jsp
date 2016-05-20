@@ -10,15 +10,14 @@
 <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-<h1 class="page-header">标题：${data.title }</h1>
 <a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
-<c:if test="${data.appendix!=null}">
+<h1 class="page-header">标题：${data.title }</h1>
+	<c:if test="${data.appendix!=null}">
 			<a href="/document/getAppendix/${data.id }">下载附件</a>
-		</c:if>
-		<c:if test="${data.appendix==null}">
-			<span class="text-muted">无附件</span>
-		</c:if>
+	</c:if>
+	<c:if test="${data.appendix==null}">
+		<span class="text-muted">无附件</span>
+	</c:if>
 <hr/>
 
 <br/>

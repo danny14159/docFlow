@@ -10,7 +10,6 @@
 <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-
 <h1 class="page-header">公文列表</h1>
 
 <a class="btn btn-xs btn-primary" href="/document/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a>
@@ -70,6 +69,7 @@
 	
 	<td>
 	<a class="btn btn-xs btn-link" href="/document/detail?id=${i.id }">查看内容</a>
+	<a class="btn btn-xs btn-link" href="/document/reviewResult/${i.id }">会审详细结果</a>
 	<a class="btn btn-xs btn-link" href="/document/update/${i.id }">修改</a>
 	<button class="btn btn-xs btn-link" onclick="del(${i.id})">删除</button>
 	

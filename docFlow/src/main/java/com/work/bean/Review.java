@@ -35,6 +35,45 @@ public class Review  {
 	 * 部门名称
 	 */
 	private String dept_name;
+	
+	/**
+	 * 作者的公钥
+	 */
+	private String author_publicKey;
+	
+	public String getAuthor_publicKey() {
+		return author_publicKey;
+	}
+
+	public void setAuthor_publicKey(String author_publicKey) {
+		this.author_publicKey = author_publicKey;
+	}
+
+	/**
+	 * 数字签名是否 
+	 */
+	private Boolean verified;
+	
+	public Boolean getVerified() {
+		return verified;
+	}
+
+	public void setVerified(Boolean verified) {
+		this.verified = verified;
+	}
+
+	/**
+	 * 消息摘要，用于验证审阅意见
+	 */
+	private String digest;
+
+	public String getDigest() {
+		return digest;
+	}
+
+	public void setDigest(String digest) {
+		this.digest = digest;
+	}
 
 	public String getDept_name() {
 		return dept_name;

@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-
+<a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
 <h1 class="page-header">审阅记录 - 新增</h1>
 
 <form form-ajax class="form-horizontal" id="main-form" action="/review/insert" forward="/review/">

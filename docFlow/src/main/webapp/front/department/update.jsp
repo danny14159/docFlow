@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-
+<a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
 <h1 class="page-header">部门 - 修改</h1>
 
 <form form-ajax class="form-horizontal" id="main-form" action="/tdepartment/update" forward="/tdepartment/">

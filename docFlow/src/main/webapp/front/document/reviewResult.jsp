@@ -10,6 +10,7 @@
 <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
+<a href="javascript:;" onclick="history.go(-1)">&lt;&lt;返回</a>
 <h1 class="page-header">审阅记录 - 查看</h1>
 
 <!-- <a class="btn btn-xs btn-primary" href="/review/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加</a> -->
@@ -22,17 +23,14 @@
 	
 	<th>审阅意见</th>
 	
-	<th>公文</th>
-	
 	<th>部门</th>
 	
 	<th>审阅状态</th>
 
 	<th>数字证书（摘要）</th>
 	
-	<th>操作</th>
 </tr>
-	<c:forEach items="${data }" var="i">
+	<c:forEach items="${list }" var="i">
 <tr>
 <td><input type="checkbox" checked="checked" name="selectRow"/></td>
 	
@@ -46,9 +44,6 @@
 		<c:out value="${i.remark}"></c:out>
 	</td>
 	
-	<td>
-		<a href="/document/detail?id=${i.doc_id}">查看公文</a>
-	</td>
 	
 	<td>
 		
@@ -79,83 +74,15 @@
 		</c:if>
 	</td>
 	
-	<td>
-	<c:if test="${i.state eq '未处理' }">
-	
-		<button class="btn btn-xs btn-success" onclick="update(${i.id},true)">同意</button>
-		<button class="btn btn-xs btn-default" onclick="update(${i.id},false)">不同意</button>
-	</c:if>
-	
-	
-	</td>
 </tr>
 </c:forEach>
 </table>
-<div id="pager"></div>
-
-<!-- Small modal -->
 
 
 
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/layer/layer.js"></script>
-<script type="text/javascript" src="/static/laypage/laypage.js"></script>
 <script type="text/javascript">
-$(function(){
-	/* laypage({
-	    cont: "pager",
-	    pages: "${pager.pageCount}", 
-	    curr: "${pager.pageNumber}", 
-	    jump: function(e, first){ 
-	        if(!first){ 
-	            location.href = "?ps=${pager.pageSize}&pn="+e.curr;
-	        }
-	    }
-	}); */
-})
-function toggleSelectAll(self,$sel){
-	if(self.checked)
-		$sel.each(function(){
-			if(!this.checked) $(this).click();
-		});
-	else{
-		$sel.each(function(){
-			if(this.checked) $(this).click();
-		});
-	}
-}
-
-function del(id){
-	if(confirm('确认删除此记录？'))
-	$.post('/review/del',{
-		id:id
-	},function(data){
-		if(data){
-			alert('操作成功');location.reload();
-		}
-		else{
-			alert('操作失败')
-		}
-	},'json');
-}
-function update(id,agree){
-	var msg = "";
-	if(msg = prompt('请在这里填下审阅意见',(agree?'':'不')+'同意')){
-		
-		$.post('/review/update_new',{
-			id:id,
-			state:(agree?'':'不')+'同意',
-			remark:msg
-		},function(data){
-			if(data){
-				location.reload();
-			}
-			else{
-				alert('修改失败')
-			}
-		})
-	}
-}
 </script>
 </body>
 </html>

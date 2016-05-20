@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.work.MainController;
@@ -27,6 +26,7 @@ import com.work.mapper.DepartmentDao;
 import com.work.mapper.DocumentDao;
 import com.work.mapper.FilesDao;
 import com.work.mapper.ReviewDao;
+import com.work.security.Coder;
 import com.work.util.M;
 
 @Controller
@@ -117,6 +117,20 @@ public class DocumentController extends BasicController<Document>{
 		model.addAttribute("data", DocumentDao.load(M.make("id", id).asMap()));
 		model.addAttribute("list", reviewDao.list(M.make("doc_id", id).asMap()));
 		return "document/detail";
+	}
+	
+	@RequestMapping("/reviewResult/{docId}")
+	public String reviewResult(@PathVariable String docId,Model model){
+		List<Review> list = reviewDao.list(M.make("doc_id", docId).asMap());
+		for(Review item:list){
+			try {
+				item.setVerified(Coder.verify(item.getRemark().getBytes(), item.getDigest(),item.getAuthor_publicKey()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("list", list);
+		return "document/reviewResult";
 	}
 	
 	@RequestMapping("/getAppendix/{id}")
