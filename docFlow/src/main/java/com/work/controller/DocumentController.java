@@ -69,8 +69,6 @@ public class DocumentController extends BasicController<Document>{
 
 	@RequestMapping(value="/insert_new",method=RequestMethod.POST)
 	public String insert(
-			@RequestParam(value="sig_dept[]",required=false) 
-			Integer[] sig_dept,
 			Document obj,
 			MultipartFile file) throws IOException {
 		User u = MainController.getCurrentUser(request);
@@ -86,12 +84,12 @@ public class DocumentController extends BasicController<Document>{
 		}
 		
 		//添加公文之后要添加相应的审核记录
-		
+		String[] sig_dept = request.getParameterValues("sig_dept");
 		if(sig_dept!=null)
-			for(int item:sig_dept){
+			for(String item:sig_dept){
 				Review review = new Review();
 				
-				review.setDept_id(item);
+				review.setDept_id(Integer.parseInt(item));
 				review.setDoc_id(DocumentDao.latestId() + 1);	
 				
 				review.setState("未处理");
