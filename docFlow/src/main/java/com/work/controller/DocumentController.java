@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.work.MainController;
@@ -61,7 +60,15 @@ public class DocumentController extends BasicController<Document>{
 		List<Document> data = getDao().list(obj);
 		
 		for(Document item:data){
-			item.setResults( reviewDao.list(M.make("doc_id", item.getId()).asMap()));
+			List<Review> review = reviewDao.list(M.make("doc_id", item.getId()).asMap());
+			boolean isFinished = true;
+			for(Review r:review){
+				if(r.getRemark() == null){
+					isFinished = false;break;
+				}
+			}
+			item.setResults(review);
+			item.setState(isFinished?"会审完成":"传阅中");
 		}
 		model.addAttribute("data",data);
 		return getPrefix()+"/list";

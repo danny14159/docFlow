@@ -19,7 +19,7 @@
 	
 	
 	
-	<th>公文状态</th>
+	<th width="15%">公文状态</th>
 	<th>公文标题</th>
 	<th>公文作者</th>
 	<th>会审结果</th>
@@ -33,8 +33,13 @@
 <td><input type="checkbox" checked="checked" name="selectRow"/></td>
 	
 	<td>
-		
-		<c:out value="${i.state}"></c:out>
+	<span class="
+	
+		<c:if test="${i.state eq '会审完成' }">text-success</c:if>
+		<c:if test="${i.state eq '传阅中' }">text-danger</c:if>
+	
+	">
+		<c:out value="${i.state}"></c:out></span>
 	</td>
 	
 	<td>
