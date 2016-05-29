@@ -85,8 +85,9 @@
 		<button class="btn btn-xs btn-success" onclick="update(${i.id},true)">同意</button>
 		<button class="btn btn-xs btn-default" onclick="update(${i.id},false)">不同意</button>
 	</c:if>
-	
-	
+	<c:if test="${i.state != '未处理' }">
+		<a class="btn btn-xs btn-default btn-link" href="/review/sublevel?reviewId=${i.id }&docId=${i.doc_id}">移交下级</a>
+	</c:if>
 	</td>
 </tr>
 </c:forEach>
@@ -155,6 +156,14 @@ function update(id,agree){
 			}
 		})
 	}
+}
+function nextLevel(reviewId){
+	
+	$.post('/review/sublevel',{
+		reviewId:reviewId
+	},function(data){
+		
+	});
 }
 </script>
 </body>

@@ -58,5 +58,30 @@
          <if test="leader_id!=null">and leader_id = #{ leader_id }</if>
        </where>
   </select>
+  <select id="queryOtherDeptsByReview" parameterType="int" resultType="com.work.bean.Department">
+SELECT
+	t_user.`name` AS leader_name,
+	td. NAME,
+	td.id
+FROM
+	t_department td
+LEFT JOIN t_user ON t_user.id = td.leader_id
+WHERE
+	td.id NOT IN (
+		SELECT
+			td.id AS id
+		FROM
+			t_review tv
+		LEFT JOIN t_department td ON td.id = tv.dept_id
+		WHERE
+			doc_id = (
+				SELECT
+					doc_id
+				FROM
+					t_review
+				WHERE
+					id = #{reviewId}
+			)
+	)  </select>
  </mapper>
  

@@ -16,6 +16,7 @@ import com.work.MainController;
 import com.work.bean.Review;
 import com.work.bean.User;
 import com.work.mapper.BasicDao;
+import com.work.mapper.DepartmentDao;
 import com.work.mapper.ReviewDao;
 import com.work.security.Coder;
 
@@ -25,6 +26,8 @@ public class ReviewController extends BasicController<Review>{
 	
 	@Resource
 	private ReviewDao ReviewDao;
+	@Resource
+	private DepartmentDao departmentDao;
 	
 	public static final String PREFIX="review/";
 
@@ -71,5 +74,27 @@ public class ReviewController extends BasicController<Review>{
 		return ReviewDao.update(obj);
 	}
 
+	@RequestMapping("/sublevel")
+	public String getSubLevel(int reviewId,int docId,Model model){
+		
+		model.addAttribute("list", departmentDao.queryOtherDeptsByReview(reviewId));
+		model.addAttribute("docId", docId);
+		return getPrefix()+"/sublevel";
+	}
+	
+	@RequestMapping("/sublevel/submit")
+	@ResponseBody
+	public Object submitSubLevel(int dept_id,int docId){
+		
+		Review review = new Review();
+		
+		review.setDept_id(dept_id);
+		review.setDoc_id(docId);	
+		
+		review.setState("未处理");
+		
+		return ReviewDao.insert(review);
+		
+	}
 }
     
