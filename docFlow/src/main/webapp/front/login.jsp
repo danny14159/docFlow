@@ -207,5 +207,9 @@ a {
 		</DIV>
 	</DIV></form>
 	<div style="text-align: center;"></div>
+	<script type="text/javascript">
+if('${msg}')
+alert('${msg}')
+</script>
 </BODY>
 </HTML>
